@@ -3,7 +3,7 @@ import boto3
 from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
-app.secret_key = ""  # Replace with your own secret key
+app.secret_key = "aws_secret_key"  # Replace with your own secret key
 
 # Modify the following variables with your MySQL database credentials
 ssm = boto3.client('ssm', region_name='us-east-1')
@@ -13,7 +13,7 @@ mysql_password = response['Parameter']['Value']
 
 # Connect to MySQL
 db_connection = mysql.connector.connect(
-    host="test.czyyxqavvlkt.us-east-1.rds.amazonaws.com",
+    host="database_endpoint",
     user="admin",
     password=mysql_password,
     database="test"
